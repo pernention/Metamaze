@@ -1,31 +1,31 @@
 import pygame
 
 
+Height = 400
 
 
-# Creating button class
+class Menu:
+    def __init__(self): # Initializing pygame
+        self.Title = pygame.font.SysFont("Calibri", 30)
 
-
-
-class Button ():
-    def __init__(self, x_position, y_position, font, text, width = 200, height = 50):
-
-        # Creating methods
-        self.x_position = x_position
-        self.y_position = y_position
-        self.font=font
-        self.width = width
-        self.height = height
-        self.text = text
-        self.text = self.font.render(self.text, True, "White")
-        self.text.rect = self.text.get_rect(center=(self.x_position,self.y_position))
         
-    def draw(self, screen):
-        # Draw blue rectangle button
-        pygame.draw.rect(screen, (0,128,255), self.rect) 
+        # Render buttons text
+        self.start = self.Title.render("Start", True, (25,25,25))
+        self.settings = self.Title.render("Settings", True, (25,25,25))
+        self.opt = self.Title.render("Option", True, (25,25,25))
+
+        self.start_rect = pygame.Rect(10, Height-150, 10, 10)
+        self.settings_rect = pygame.Rect(10, Height-100, 10, 10)
+        self.opt_rect = pygame.Rect(10, Height-50, 10, 10)
+        
 
 
-    def button_clicked(self, mouse_position):
-        # Checks if button is clicked
-        return self.rect.collidepoint(mouse_position)
-    
+
+    def draw(self, win):
+
+        # Draw Start button
+        win.blit(self.start, (self.start_rect.x, self.start_rect.y))
+        # Draw Settings button
+        win.blit(self.settings, (self.settings_rect.x, self.settings_rect.y))
+        # Draw Options button
+        win.blit(self.opt, (self.opt_rect.x, self.opt_rect.y))
